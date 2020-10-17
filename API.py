@@ -7,11 +7,7 @@ app = Flask(__name__)
 c = LotteCinema()
 g = Cgv()
 
-@app.route("/ping", methods=['GET'])
-def pong():
-    return "pong"
-
-@app.route("/get_current_movie", methods=['POST'])
+@app.route("/current-movie", methods=['POST'])
 def get_current_movie():
     lotte_data = {}
     cgv_data = {}
@@ -26,7 +22,7 @@ def get_current_movie():
     lotte_data['CurrentMovieData'].extend(cgv_data['CgvCurrentMovieData'])
     return jsonify(lotte_data)
 
-@app.route("/show_trailer", methods=['POST'])
+@app.route("/trailer", methods=['POST'])
 def show_trailer():
     name_data = request.json
     print("name_data : ",name_data)
@@ -34,7 +30,7 @@ def show_trailer():
     
     return jsonify(c.show_trailer(movie_name))
 
-@app.route("/get_specific_time_movie/<latitude>/<longitude>/<start>/<end>", methods=['GET', 'POST'])
+@app.route("/specific-time-movie/<latitude>/<longitude>/<start>/<end>", methods=['GET', 'POST'])
 def get_specific_time_movie(latitude,longitude,start, end=30):
     time_list = []
     if end == 30:
@@ -53,7 +49,7 @@ def get_specific_time_movie(latitude,longitude,start, end=30):
     lotte_data['SpecificTimeData'].extend(cgv_data['CgvSpecificTimeData'])
     return jsonify(lotte_data)
 
-@app.route("/get_movie_name_theater/<movie_name>/<latitude>/<longitude>", methods=['GET', 'POST'])    
+@app.route("/movie-name/<movie_name>/<latitude>/<longitude>", methods=['GET', 'POST'])    
 def get_movie_name_theater(movie_name, latitude, longitude):
     return jsonify(c.get_movie_name_theater(latitude, longitude, movie_name))
 
