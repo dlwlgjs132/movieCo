@@ -103,7 +103,7 @@ class LotteCinema(object):
 #             print(theater)
             distance_list = []
             distance = self.distance(pos_latitude, pos_longitude,theater.get('Latitude'), theater.get('Longitude'))
-            if distance <= 5:
+            if distance <= 3:
                 distance_list.append(theater)
                 distance_list.append(round(distance, 2))
 #                 distance_idx_list.append(theater)
