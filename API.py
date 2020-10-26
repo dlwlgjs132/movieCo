@@ -7,7 +7,7 @@ app = Flask(__name__)
 c = LotteCinema()
 g = Cgv()
 
-@app.route("/current-movie", methods=['POST'])
+@app.route("/current-movie", methods=['GET'])
 def get_current_movie():
     lotte_data = {}
     cgv_data = {}
@@ -22,7 +22,7 @@ def get_current_movie():
     lotte_data['CurrentMovieData'].extend(cgv_data['CgvCurrentMovieData'])
     return jsonify(lotte_data)
 
-@app.route("/trailer", methods=['POST'])
+@app.route("/trailer", methods=['GET'])
 def show_trailer():
     name_data = request.json
     print("name_data : ",name_data)
