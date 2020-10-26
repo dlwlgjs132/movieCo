@@ -17,7 +17,7 @@ class Cgv(object):
             
             distance = self.get_distance(latitude, longitude, current_latitude, current_longitude)
 
-            if distance <= 5:
+            if distance <= 3:
                 distance_idx_list.append(i)
                 distance_list.append(distance)
         
